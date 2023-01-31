@@ -5,9 +5,11 @@ import { AppService } from './app.service';
 import { DocsModule } from './docs/docs.module';
 import { UsersModule } from './users/users.module';
 import { IamModule } from './iam/iam.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     DocsModule,
     UsersModule,
     TypeOrmModule.forRoot({
