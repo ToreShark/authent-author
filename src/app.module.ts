@@ -15,7 +15,7 @@ import { IamModule } from './iam/iam.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'pass123',
+      password: 'postgres',
       database: 'auth_official',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
