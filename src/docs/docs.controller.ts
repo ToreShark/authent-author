@@ -1,5 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Req,
+} from '@nestjs/common';
 import { Roles } from 'src/iam/authorization/decorators/roles.decorator';
+import { Permissions } from 'src/iam/authorization/decorators/permissions.decorator';
+import { Permission } from 'src/iam/authorization/permission.type';
 import { ActiveUser } from 'src/iam/decorators/active-user.decorator';
 import { ActiveUserData } from 'src/iam/interfaces/active-user-data.interface';
 import { Role } from 'src/users/enums/role.enum';
@@ -11,7 +22,8 @@ import { UpdateDocDto } from './dto/update-doc.dto';
 export class DocsController {
   constructor(private readonly docsService: DocsService) {}
 
-  @Roles(Role.Admin)
+  // @Roles(Role.Admin)
+  @Permissions(Permission.CreateDocs)
   @Post()
   create(@Body() createDocDto: CreateDocDto) {
     return this.docsService.create(createDocDto);
@@ -33,7 +45,6 @@ export class DocsController {
   update(@Param('id') id: string, @Body() updateDocDto: UpdateDocDto) {
     return this.docsService.update(+id, updateDocDto);
   }
-  
 
   @Roles(Role.Admin)
   @Delete(':id')
