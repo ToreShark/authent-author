@@ -33,6 +33,7 @@ export class DocsController {
   update(@Param('id') id: string, @Body() updateDocDto: UpdateDocDto) {
     return this.docsService.update(+id, updateDocDto);
   }
+  
 
   @Roles(Role.Admin)
   @Delete(':id')
